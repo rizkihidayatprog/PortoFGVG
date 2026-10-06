@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +10,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23FFDC58' stroke='black' stroke-width='8'/><text x='50' y='72' font-size='60' text-anchor='middle' font-family='Arial Black'>R</text></svg>">
+<script>
+/* Nyalakan splash sebelum render pertama (mencegah kedipan konten).
+   Kalau app.js gagal, fail-safe CSS tetap menutup splash dalam 3 detik. */
+document.documentElement.classList.remove('no-js');
+document.documentElement.classList.add('splash-on');
+</script>
 </head>
 <body>
 
@@ -41,6 +47,18 @@
   <symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
   <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
 </svg>
+
+<!-- SPLASH SCREEN (hanya aktif bila JS jalan; disembunyikan otomatis oleh fail-safe) -->
+<div class="splash" id="splash" aria-hidden="true">
+  <div class="splash-inner">
+    <div class="splash-mark">RIZKI<span>HIDAYAT</span></div>
+    <div class="splash-bar"><i id="splashFill"></i></div>
+    <div class="splash-meta">
+      <span class="splash-load">LOADING</span>
+      <span class="splash-pct" id="splashPct">0%</span>
+    </div>
+  </div>
+</div>
 
 <!-- NAVBAR -->
 <nav class="nav">
@@ -75,7 +93,7 @@
     </div>
     <div class="hero-photo">
       <div class="photo-frame">
-        <img src="assets/img/profile/rizki.png" alt="Rizki Hidayat" fetchpriority="high">
+        <img src="assets/img/profile/rizki.webp" alt="Rizki Hidayat" fetchpriority="high" width="1200" height="1800">
         <div class="photo-sticker s1"><svg class="ic"><use href="#i-clap"/></svg> EDITOR</div>
         <div class="photo-sticker s2"><svg class="ic"><use href="#i-camera"/></svg> FOTO</div>
       </div>

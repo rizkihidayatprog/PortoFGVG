@@ -1,3 +1,89 @@
+// --- SPLASH SCREEN: progress dari proses NYATA (font + foto hero), bukan palsu ---
+(function splash(){
+  var html   = document.documentElement;
+  var el     = document.getElementById('splash');
+  if(!el) return;
+  var fill   = document.getElementById('splashFill');
+  var label  = document.getElementById('splashPct');
+  var KEY    = 'splash-seen';
+  var MIN_MS = 5000;               // durasi minimum tampil (permintaan: 5 detik)
+  var MAX_MS = 5600;               // batas keras: tidak akan menjebak pengguna
+  var timers = [], raf = null, closing = false;
+
+  function showProgress(p){
+    p = Math.max(0, Math.min(100, p));
+    if(fill) fill.style.width = p + '%';
+    if(label) label.textContent = Math.round(p) + '%';
+  }
+  function close(immediate){
+    if(closing) return;
+    closing = true;
+    timers.forEach(function(t){ clearTimeout(t); clearInterval(t); });
+    if(raf) cancelAnimationFrame(raf);
+    showProgress(100);
+    if(immediate || reduce) {
+      html.classList.remove('splash-on');
+      body.classList.add('page-in');
+      el.setAttribute('hidden', '');
+      return;
+    }
+    // Animasi keluar: stamp + wipe + kilat.
+    // PENTING: splash-on baru dicoret SESUDAH animasi selesai, kalau tidak
+    // display:none langsung berlaku dan animasinya tidak akan terlihat.
+    el.classList.add('done');
+    timers.push(setTimeout(function(){
+      html.classList.remove('splash-on');
+      el.setAttribute('hidden', '');
+      body.classList.add('page-in');
+    }, 800));
+  }
+
+  var body = document.body;
+
+  // Sudah pernah tampil sesi ini, atau pengguna minta minimal animasi
+  var seen = false;
+  try { seen = sessionStorage.getItem(KEY) === '1'; } catch(e){}
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(seen || reduce) { close(true); return; }
+  try { sessionStorage.setItem(KEY, '1'); } catch(e){}
+
+  var t0 = Date.now();
+  timers.push(setTimeout(close, MAX_MS));   // jaring pengaman utama
+
+  // Dua task nyata: font siap & foto hero ter-decode
+  var tasks = [
+    document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve(),
+    new Promise(function(res){
+      var img = document.querySelector('.hero-photo img');
+      if(!img) return res();
+      if(img.complete && img.naturalWidth) return res();
+      img.addEventListener('load', res, {once:true});
+      img.addEventListener('error', res, {once:true});
+    })
+  ];
+
+  var finished = 0;
+  function settle(){
+    // Aset sudah siap sebelum durasi minimum tercapai:
+    // bar creeps pelan ke 100% (halus, tidak melompat) sampai waktu minimum
+    function frame(){
+      var elapsed = Date.now() - t0;
+      var p = Math.min(100, 92 + (elapsed / MIN_MS) * 8);
+      showProgress(p);
+      if(elapsed >= MIN_MS) return close();
+      raf = requestAnimationFrame(frame);
+    }
+    raf = requestAnimationFrame(frame);
+  }
+  function bump(){
+    finished++;
+    // Progress nyata hanya sampai 92%; sisa 8% jadi animasi penutup di settle()
+    showProgress(Math.min(92, finished / tasks.length * 92));
+    if(finished === tasks.length) settle();
+  }
+  tasks.forEach(function(t){ Promise.resolve(t).then(bump, bump); });
+})();
+
 // Data karya — video lokal dimuat HANYA saat modal dibuka (preload none)
 const VIDEOS = [
   // --- EVENT / MDS (Google Drive) ---
