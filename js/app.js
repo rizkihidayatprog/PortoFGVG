@@ -144,3 +144,55 @@ burger.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.addEventListener('click', e => { if(e.target.tagName==='A') navLinks.classList.remove('open'); });
 
 renderVideos();
+
+// --- Live Count via Abacus (gratis, tanpa daftar) ---
+// Total: +1 tiap kunjungan. Online: estimasi pengunjung aktif 5 menit terakhir
+// via bucket waktu (tanpa endpoint decrement). Localhost tidak dihitung.
+(function liveCount(){
+  const elTotal = document.getElementById('lcTotal');
+  const elOnline = document.getElementById('lcOnline');
+  if(!elTotal || !elOnline) return;
+  const NS = 'rizkihidayat-porto';
+  const API = 'https://abacus.jasoncameron.dev';
+  const isLocal = ['localhost','127.0.0.1'].includes(location.hostname) || location.protocol === 'file:';
+  const fmt = n => Number(n || 0).toLocaleString('id-ID');
+  async function api(path){
+    const r = await fetch(API + path);
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  }
+  function bucketKey(d){
+    const m = d.getMinutes() - (d.getMinutes() % 5);
+    const p = n => String(n).padStart(2, '0');
+    return `online-${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}-${p(d.getHours())}${p(m)}`;
+  }
+  // Total kunjungan
+  (async () => {
+    try{
+      const d = await api(`/${isLocal ? 'get' : 'hit'}/${NS}/total-kunjungan`);
+      elTotal.textContent = fmt(d.value);
+      try{ localStorage.setItem('lc-total', d.value); }catch(e){}
+    }catch(e){
+      try{
+        const c = localStorage.getItem('lc-total');
+        elTotal.textContent = c ? fmt(c) : '—';
+      }catch(err){ elTotal.textContent = '—'; }
+    }
+  })();
+  // Online sekarang (heartbeat 60 detik)
+  async function beat(){
+    try{
+      const now = new Date();
+      const cur = bucketKey(now);
+      const prev = bucketKey(new Date(now.getTime() - 5 * 60 * 1000));
+      const mode = isLocal ? 'get' : 'hit';
+      const [c, p] = await Promise.all([
+        api(`/${mode}/${NS}/${cur}`),
+        api(`/get/${NS}/${prev}`).catch(() => ({value: 0}))
+      ]);
+      elOnline.textContent = fmt(Math.max(c.value, p.value || 0));
+    }catch(e){ /* biarkan angka terakhir tampil */ }
+  }
+  beat();
+  setInterval(beat, 60000);
+})();

@@ -139,6 +139,19 @@ a{color:inherit}
 /* FOOTER */
 .footer{background:#111;color:#fff;text-align:center;padding:20px;font-size:.9rem}
 
+/* LIVE COUNT */
+.live-count{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.lc{display:flex;align-items:center;gap:10px;background:var(--yellow);color:#111;border:3px solid #fff;
+  box-shadow:4px 4px 0 var(--pink);padding:8px 16px;font-weight:700;position:relative}
+.lc.live{background:var(--lime)}
+.lc .ic{width:1.6em;height:1.6em}
+.lc div{display:flex;flex-direction:column;line-height:1.2;text-align:left}
+.lc b{font-family:'Archivo Black';font-size:1.2rem}
+.lc span{font-size:.65rem;letter-spacing:.06em}
+.pulse{position:absolute;top:-7px;right:-7px;width:16px;height:16px;background:#22c55e;
+  border:3px solid #111;border-radius:50%;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
 /* MODAL */
 .modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:100;padding:16px}
 .modal.open{display:flex}
