@@ -11,13 +11,13 @@ const VIDEOS = [
   {id:'drone-pilot', cat:'drone', src:'local', title:'Drone Pilot — Latihan & Aerial Shot', file:'assets/video/drone-pilot.mp4', cover:'assets/img/poster-video/drone-pilot.jpg', size:'7,2 MB'},
   {id:'tur-virtual', cat:'drone', src:'local', title:'Tur Virtual — Company Profile Area', file:'assets/video/tur-virtual.mp4', cover:'assets/img/poster-video/tur-virtual.jpg', size:'4,1 MB'},
   {id:'ngonten', cat:'k3', src:'local', title:'Ngonten — Behind The Process K3', file:'assets/video/ngonten-k3.mp4', cover:'assets/img/poster-video/ngonten-k3.jpg', size:'5,7 MB'},
-  {id:'k3-forklift', cat:'k3', src:'local', title:'Operator Forklift — Tidak Sesederhana Nyetir', file:'assets/video/k3-forklift.mp4', cover:'assets/img/poster-video/k3-forklift.jpg', size:'14 MB'},
-  {id:'k3-ketinggian', cat:'k3', src:'local', title:'Kerja di Ketinggian — Kompetensi & Risiko', file:'assets/video/k3-kerja-ketinggian.mp4', cover:'assets/img/poster-video/k3-kerja-ketinggian.jpg', size:'9 MB'},
-  {id:'k3-apar', cat:'k3', src:'local', title:'APAR — Tidak Semua Api Sama', file:'assets/video/k3-apar.mp4', cover:'assets/img/poster-video/k3-apar.jpg', size:'9,3 MB'},
-  {id:'k3-komitmen', cat:'k3', src:'local', title:'Komitmen Keselamatan Kerja Proyek', file:'assets/video/k3-komitmen-keselamatan.mp4', cover:'assets/img/poster-video/k3-komitmen-keselamatan.jpg', size:'9,5 MB'},
-  {id:'k3-alatberat', cat:'k3', src:'local', title:'Kenapa Alat Berat Warnanya Kuning?', file:'assets/video/k3-alat-berat-kuning.mp4', cover:'assets/img/poster-video/k3-alat-berat-kuning.jpg', size:'3 MB'},
-  {id:'k3-naikjabatan', cat:'k3', src:'local', title:'Naik Jabatan — Proses di Balik Pencapaian', file:'assets/video/k3-naik-jabatan.mp4', cover:'assets/img/poster-video/k3-naik-jabatan.jpg', size:'4,6 MB'},
-  {id:'k3-karier', cat:'k3', src:'local', title:'6 Tahun Kerja, Karier Jalan di Tempat?', file:'assets/video/k3-karier-jalan-ditempat.mp4', cover:'assets/img/poster-video/k3-karier-jalan-ditempat.jpg', size:'4 MB'},
+  {id:'k3-forklift', cat:'k3', src:'local', title:'Operator Forklift — Tidak Sesederhana Nyetir', file:'assets/video/k3-forklift.mp4', cover:'assets/img/poster-video/k3-forklift.jpg', size:'47 MB'},
+  {id:'k3-ketinggian', cat:'k3', src:'local', title:'Kerja di Ketinggian — Kompetensi & Risiko', file:'assets/video/k3-kerja-ketinggian.mp4', cover:'assets/img/poster-video/k3-kerja-ketinggian.jpg', size:'37 MB'},
+  {id:'k3-apar', cat:'k3', src:'local', title:'APAR — Tidak Semua Api Sama', file:'assets/video/k3-apar.mp4', cover:'assets/img/poster-video/k3-apar.jpg', size:'29 MB'},
+  {id:'k3-komitmen', cat:'k3', src:'local', title:'Komitmen Keselamatan Kerja Proyek', file:'assets/video/k3-komitmen-keselamatan.mp4', cover:'assets/img/poster-video/k3-komitmen-keselamatan.jpg', size:'27 MB'},
+  {id:'k3-alatberat', cat:'k3', src:'local', title:'Kenapa Alat Berat Warnanya Kuning?', file:'assets/video/k3-alat-berat-kuning.mp4', cover:'assets/img/poster-video/k3-alat-berat-kuning.jpg', size:'10 MB'},
+  {id:'k3-naikjabatan', cat:'k3', src:'local', title:'Naik Jabatan — Proses di Balik Pencapaian', file:'assets/video/k3-naik-jabatan.mp4', cover:'assets/img/poster-video/k3-naik-jabatan.jpg', size:'13 MB'},
+  {id:'k3-karier', cat:'k3', src:'local', title:'6 Tahun Kerja, Karier Jalan di Tempat?', file:'assets/video/k3-karier-jalan-ditempat.mp4', cover:'assets/img/poster-video/k3-karier-jalan-ditempat.jpg', size:'12 MB'},
 ];
 
 const CAT_LABEL = {event:'EVENT', k3:'EDUKASI K3', drone:'DRONE'};
