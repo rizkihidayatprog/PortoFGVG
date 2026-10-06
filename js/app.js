@@ -20,7 +20,7 @@ const VIDEOS = [
   {id:'k3-karier', cat:'k3', src:'local', title:'6 Tahun Kerja, Karier Jalan di Tempat?', file:'assets/video/k3-karier-jalan-ditempat.mp4', cover:'assets/img/poster-video/k3-karier-jalan-ditempat.jpg', size:'12 MB'},
 ];
 
-const CAT_LABEL = {event:'EVENT', k3:'EDUKASI K3', drone:'DRONE'};
+const CAT_LABEL = {event:'EVENT', k3:'KONTEN EDUKASI', drone:'DRONE'};
 
 const grid = document.getElementById('videoGrid');
 const count = document.getElementById('videoCount');
