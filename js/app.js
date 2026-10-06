@@ -94,7 +94,7 @@ modal.addEventListener('click', e => { if(e.target === modal) closeVideo(); });
 document.addEventListener('keydown', e => { if(e.key === 'Escape'){ closeVideo(); closePhoto(); }});
 
 // --- Fotografi ---
-const PHOTOS = ['DSC03264','DSC03328','DSC03335','DSC04687-2','DSC04688-2','DSC04689-2','DSC05527','DSC05575','DSC05614','DSC06701','DSC06709','DSC06750','DSC06848','DSC06873','DSC06895'];
+const PHOTOS = ['DSC03264','DSC03328','DSC03335','DSC04687-2','DSC04688-2','DSC04689-2','DSC05527','DSC05575','DSC05614','DSC06701','DSC06750','DSC06848','DSC06873','DSC06895'];
 const photoGrid = document.getElementById('photoGrid');
 const extOf = n => n === 'DSC05614' ? 'JPG' : 'jpg';
 PHOTOS.forEach((n,i) => {
