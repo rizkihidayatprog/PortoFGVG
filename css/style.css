@@ -37,6 +37,75 @@ a{color:inherit}
 .btn-pink{background:var(--pink)}.btn-cyan{background:var(--cyan)}
 .btn-yellow{background:var(--yellow)}.btn-white{background:#fff}.btn-small{padding:8px 14px;background:#fff}
 
+/* TOMBOL DOWNLOAD CV — spotlight + glow + shine (menonjol di hero) */
+.btn-spot{position:relative;overflow:hidden;isolation:isolate;--spot:0;
+  background-color:#fff;font-size:1.05rem;padding:15px 28px;letter-spacing:.02em;
+  background-image:radial-gradient(150px circle at var(--mx,50%) var(--my,50%),
+    rgba(255,220,88,calc(.95 * var(--spot))),rgba(255,220,88,0) 70%);
+  background-repeat:no-repeat}
+.btn-spot:hover{--spot:1;transform:translate(-3px,-3px)}
+/* halo glow di luar tombol: cincin tebal + aura, warna berganti cepat */
+.btn-spot::before{content:'';position:absolute;inset:-5px;z-index:-2;border-radius:inherit;
+  animation:hueGlow 2.4s linear infinite}
+/* shine sering & tegas */
+.btn-spot::after{content:'';position:absolute;top:-25%;left:-170%;width:55%;height:150%;z-index:1;
+  pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.95) 35%,rgba(255,255,255,.95) 50%,transparent);
+  transform:skewX(-20deg);animation:sweep 1.7s ease-in-out infinite}
+.btn-spot .ic{position:relative;z-index:2;transition:transform .2s ease}
+.btn-spot:hover .ic{transform:translateY(3px) scale(1.18);animation:bob .5s ease-in-out infinite alternate}
+@keyframes popIn{from{opacity:0;transform:translateY(14px) scale(.86)}to{opacity:1;transform:none}}
+@keyframes hueGlow{
+  0%{box-shadow:0 0 0 4px var(--yellow),0 0 16px 3px rgba(255,220,88,.8)}
+  33%{box-shadow:0 0 0 4px var(--pink),0 0 16px 3px rgba(255,144,232,.8)}
+  66%{box-shadow:0 0 0 4px var(--cyan),0 0 16px 3px rgba(125,249,255,.8)}
+  100%{box-shadow:0 0 0 4px var(--yellow),0 0 16px 3px rgba(255,220,88,.8)}
+}
+@keyframes sweep{0%{left:-170%}42%{left:170%}100%{left:170%}}
+@keyframes bob{from{transform:translateY(3px) scale(1.14)}to{transform:translateY(-4px) scale(1.24)}}
+
+/* EFEK PETIR — kilat yang menyambar di sekeliling tombol */
+.btn-spot .bolt{position:absolute;z-index:3;pointer-events:none;opacity:0;
+  color:var(--yellow);filter:drop-shadow(0 0 6px currentColor)}
+.btn-spot .bolt .ic{width:1.5em;height:1.5em;display:block;margin:0;fill:currentColor;stroke:none}
+.btn-spot .b1{top:-16px;left:-10px;transform:rotate(-18deg);animation:zapA 2.6s steps(1,end) infinite}
+.btn-spot .b2{top:-20px;right:-6px;transform:rotate(14deg) scale(.85);color:var(--cyan);
+  animation:zapB 3.4s steps(1,end) infinite .7s}
+.btn-spot .b3{bottom:-14px;left:38%;transform:rotate(160deg) scale(.9);color:var(--pink);
+  animation:zapA 4.1s steps(1,end) infinite 1.3s}
+@keyframes zapA{
+  0%,88%,100%{opacity:0;scale:.5}
+  89%{opacity:1;scale:1.35}
+  90%{opacity:.1;scale:.9}
+  91%{opacity:1;scale:1.25}
+  93%{opacity:.15;scale:.95}
+  94%{opacity:1;scale:1.1}
+  96%{opacity:0;scale:1}
+}
+@keyframes zapB{
+  0%,70%,100%{opacity:0;scale:.5}
+  71%{opacity:1;scale:1.3}
+  72%{opacity:.1}
+  73%{opacity:1;scale:1.2}
+  75%{opacity:0}
+}
+/* denyut listrik tidak teratur di tombol + kilat putih sesaat */
+@keyframes sparkFlicker{
+  0%,100%{box-shadow:5px 5px 0 #111,0 0 22px 4px rgba(255,220,88,.85)}
+  46%{box-shadow:5px 5px 0 #111,0 0 44px 16px rgba(255,144,232,.95)}
+  48%{box-shadow:5px 5px 0 #111,0 0 12px 2px rgba(255,255,255,.6)}
+  50%{box-shadow:5px 5px 0 #111,0 0 50px 20px rgba(125,249,255,.95)}
+  52%{box-shadow:5px 5px 0 #111,0 0 14px 2px rgba(255,255,255,.5)}
+  54%{box-shadow:5px 5px 0 #111,0 0 40px 14px rgba(255,220,88,.9)}
+}
+.btn-spot{animation:popIn .5s cubic-bezier(.2,1.4,.4,1),sparkFlicker 1.8s linear infinite .5s}
+@media (prefers-reduced-motion:reduce){
+  .btn-spot{animation:none;box-shadow:5px 5px 0 #111}
+  .btn-spot::after,.btn-spot::before{display:none}
+  .btn-spot .bolt{display:none}
+  .btn-spot:hover .ic{animation:none}
+}
+
 /* HERO */
 .hero{padding:40px 20px 50px;background:linear-gradient(180deg,var(--yellow) 0%,#FFE99A 100%);border-bottom:var(--border)}
 .hero-badge{display:inline-block;background:#111;color:#fff;font-weight:700;padding:6px 14px;border:var(--border);
@@ -131,6 +200,7 @@ a{color:inherit}
 .timeline li{border-left:4px solid #111;padding:0 0 16px 14px;position:relative}
 .timeline li::before{content:'';position:absolute;left:-10px;top:2px;width:14px;height:14px;background:var(--pink);border:3px solid #111;border-radius:50%}
 .timeline small{display:block;color:#333}
+
 .edu{margin-top:12px;background:var(--yellow);border:2px solid #111;padding:6px 10px;font-size:.9rem}
 .sosmed{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .sosmed a,.sosmed span{font-size:.8rem;font-weight:700;border:2px solid #111;background:#fff;padding:4px 10px;text-decoration:none}

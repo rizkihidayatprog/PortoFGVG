@@ -143,6 +143,15 @@ const navLinks = document.getElementById('navLinks');
 burger.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.addEventListener('click', e => { if(e.target.tagName==='A') navLinks.classList.remove('open'); });
 
+// --- Spotlight tombol Download CV: cahaya mengikuti kursor ---
+document.querySelectorAll('.btn-spot').forEach(function(btn){
+  btn.addEventListener('pointermove', function(e){
+    var r = btn.getBoundingClientRect();
+    btn.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    btn.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  });
+});
+
 renderVideos();
 
 // --- Live Count via Abacus (gratis, tanpa daftar) ---
