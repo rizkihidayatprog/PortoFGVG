@@ -6,8 +6,8 @@
   var fill   = document.getElementById('splashFill');
   var label  = document.getElementById('splashPct');
   var KEY    = 'splash-seen';
-  var MIN_MS = 5000;               // durasi minimum tampil (permintaan: 5 detik)
-  var MAX_MS = 5600;               // batas keras: tidak akan menjebak pengguna
+  var MIN_MS = 3000;               // durasi minimum tampil
+  var MAX_MS = 3600;               // batas keras: tidak akan menjebak pengguna
   var timers = [], raf = null, closing = false;
 
   function showProgress(p){

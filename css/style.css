@@ -28,7 +28,7 @@ html.splash-on .splash{display:flex}
 html.splash-on body{overflow:hidden}
 .splash{position:fixed;inset:0;z-index:999;background:var(--yellow);
   align-items:center;justify-content:center;
-  animation:splashGone .45s linear 6s forwards}
+  animation:splashGone .45s linear 4s forwards}
 @keyframes splashGone{to{opacity:0;visibility:hidden;pointer-events:none}}
 .splash-inner{width:min(520px,86vw);text-align:center}
 .splash-mark{font-family:'Archivo Black',sans-serif;font-size:clamp(1.8rem,7vw,3.2rem);
